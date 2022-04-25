@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flash/flash.dart';
+import 'package:flutter/material.dart';
 import 'package:zoe/models/comments-model.dart';
 import 'package:zoe/models/post-model.dart';
 import 'package:zoe/models/user-model.dart';
@@ -85,5 +87,79 @@ class Api {
     }
 
     return comments;
+  }
+
+  // Get comments
+  Future<void> addPost(String title, String body, BuildContext context) async {
+    print("🛠 [http.dart] Adding...");
+
+    try {
+      final response = await _dio.post(
+        "/posts",
+        data: {
+          "title": title,
+          "body": body,
+          "userId": 0,
+        },
+        options: Options(
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        ),
+      );
+
+      showFlash(
+        context: context,
+        duration: Duration(milliseconds: 3500),
+        builder: (_, controller) => Flash(
+          controller: controller,
+          behavior: FlashBehavior.floating,
+          position: FlashPosition.bottom,
+          backgroundColor: Colors.green,
+          boxShadows: kElevationToShadow[4],
+          horizontalDismissDirection: HorizontalDismissDirection.horizontal,
+          child: FlashBar(
+            content: Text(
+              'Your post was successfully added!',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ),
+      );
+      Navigator.of(context).pop();
+
+      print("🟢 [http.dart] Post added");
+    } catch (e) {
+      print("🔴 [http.dart] Post added:\n $e");
+
+      showFlash(
+        context: context,
+        duration: Duration(milliseconds: 3500),
+        builder: (_, controller) => Flash(
+          controller: controller,
+          behavior: FlashBehavior.floating,
+          position: FlashPosition.bottom,
+          backgroundColor: Colors.red,
+          boxShadows: kElevationToShadow[4],
+          horizontalDismissDirection: HorizontalDismissDirection.horizontal,
+          child: FlashBar(
+            content: Text(
+              'Something went wrong... try again',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
   }
 }

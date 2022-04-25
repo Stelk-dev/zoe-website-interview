@@ -41,6 +41,9 @@ dependencies:
   # DATA
   get: ^4.6.1
 
+  # DIALOG
+  flash: ^2.0.3+2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

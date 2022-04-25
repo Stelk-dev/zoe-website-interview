@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/instance_manager.dart';
 import 'package:zoe/style.dart';
-
-import '../data/DarkMode.dart';
 
 class DefaultScaffold extends StatefulWidget {
   final Widget body;
@@ -13,8 +10,6 @@ class DefaultScaffold extends StatefulWidget {
 }
 
 class _DefaultScaffoldState extends State<DefaultScaffold> {
-  final dk = Get.put(DarkMode());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,21 +23,6 @@ class _DefaultScaffoldState extends State<DefaultScaffold> {
         ),
         backgroundColor: Style.mainColor,
         elevation: 0,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            child: IconButton(
-              onPressed: () {
-                dk.setDarkMode(!dk.darkMode);
-                setState(() {});
-              },
-              icon: Icon(
-                dk.darkMode ? Icons.dark_mode : Icons.dark_mode_outlined,
-                size: 30,
-              ),
-            ),
-          ),
-        ],
       ),
       body: widget.body,
     );
