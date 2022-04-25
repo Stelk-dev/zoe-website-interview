@@ -2,6 +2,9 @@
 
 Zoe is a clean social website wich use data from this site: https://jsonplaceholder.typicode.com/
 
+# Video
+https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/video.mov
+
 # Screenshots
 
 ## Home
@@ -24,6 +27,3 @@ Zoe is a clean social website wich use data from this site: https://jsonplacehol
 
 ## Responsive on mobile
 <img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/7.png" /> 
-
-# Video
-https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/video.mov
