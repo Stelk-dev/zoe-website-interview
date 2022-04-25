@@ -61,6 +61,8 @@ class Api {
       final response = await _dio.get("/users/$userId");
       final data = response.data as Map<String, dynamic>;
 
+      if (data.isEmpty) return User.anonymous();
+
       user = User.fromJson(data);
       print("🟢 [http.dart] Getting user");
     } catch (e) {

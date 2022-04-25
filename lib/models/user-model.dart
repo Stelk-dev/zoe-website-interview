@@ -6,10 +6,10 @@ class User {
   final String name;
   final String username;
   final String email;
-  final Address address;
+  final Address? address;
   final String phone;
   final String website;
-  final Company company;
+  final Company? company;
 
   const User({
     required this.id,
@@ -32,6 +32,19 @@ class User {
       phone: map["phone"],
       website: map["website"],
       company: Company.fromJson(map["company"]),
+    );
+  }
+
+  static User anonymous() {
+    return User(
+      id: 0,
+      name: "Anonymous",
+      username: "Anonymous",
+      email: "",
+      address: null,
+      phone: "",
+      website: "",
+      company: null,
     );
   }
 }
