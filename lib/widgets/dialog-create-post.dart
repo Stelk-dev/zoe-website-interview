@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zoe/service/http.dart';
+import 'package:zoe/style.dart';
+import 'package:zoe/widgets/text-form-field.dart';
 
 class DialogCreatePost extends StatelessWidget {
   final TextEditingController _title = TextEditingController();
@@ -11,12 +13,20 @@ class DialogCreatePost extends StatelessWidget {
   Widget build(BuildContext context) {
     return StatefulBuilder(
       builder: (_, setState) => AlertDialog(
+        backgroundColor: Colors.black,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               "Share what you think",
-              style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 36,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             _loading
                 ? SizedBox(
@@ -29,43 +39,28 @@ class DialogCreatePost extends StatelessWidget {
         ),
         actionsPadding: EdgeInsets.only(bottom: 8, right: 16),
         content: SizedBox(
-          width: MediaQuery.of(context).size.width * .7,
+          width: 800,
           child: Form(
             key: _key,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
-                TextFormField(
+                AppTextFormField(
                   controller: _title,
-                  style: TextStyle(fontWeight: FontWeight.bold),
                   validator: (v) =>
                       v!.isEmpty ? "Please compile this form" : null,
-                  decoration: InputDecoration(
-                    hintText: "Untitled",
-                    hintStyle: TextStyle(fontWeight: FontWeight.normal),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(width: 2, color: Colors.grey),
-                    ),
-                  ),
+                  hintText: "Untitled",
                 ),
                 SizedBox(
                   height: 16,
                 ),
-                TextFormField(
-                  controller: _content,
+                AppTextFormField(
+                  controller: _title,
                   validator: (v) =>
                       v!.isEmpty ? "Please compile this form" : null,
-                  textAlign: TextAlign.start,
-                  decoration: InputDecoration(
-                    hintText: "Content",
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(width: 2, color: Colors.grey),
-                    ),
-                  ),
-                  maxLines: 18,
+                  hintText: "Content...",
+                  maxLines: 14,
                 ),
               ],
             ),
@@ -80,18 +75,18 @@ class DialogCreatePost extends StatelessWidget {
                 "Cancel",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.red,
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
               ),
             ),
             style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(
+                Colors.red,
+              ),
               padding: MaterialStateProperty.all(
                 EdgeInsets.all(16),
-              ),
-              overlayColor: MaterialStateProperty.all(
-                Colors.red.withOpacity(.1),
               ),
             ),
           ),
@@ -110,18 +105,18 @@ class DialogCreatePost extends StatelessWidget {
                 "Post",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Colors.lightBlue,
+                  color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
               ),
             ),
             style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(
+                Colors.lightBlue,
+              ),
               padding: MaterialStateProperty.all(
                 EdgeInsets.all(16),
-              ),
-              overlayColor: MaterialStateProperty.all(
-                Colors.lightBlue.withOpacity(.1),
               ),
             ),
           ),

@@ -10,9 +10,10 @@ class PostBox extends StatelessWidget {
     return Center(
       child: Container(
         width: 600,
-        height: 200,
-        padding: EdgeInsets.symmetric(horizontal: 12),
+        height: 230,
+        padding: EdgeInsets.symmetric(horizontal: 50),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               post.title,
