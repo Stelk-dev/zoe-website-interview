@@ -26,4 +26,4 @@ Zoe is a clean social website wich use data from this site: https://jsonplacehol
 <img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/7.png" /> 
 
 # Video
-<!-- <video src="https://github.com/Stelk-dev/readme-files/blob/1.png" > -->
+https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/video.mov
