@@ -19,6 +19,9 @@ class _DefaultScaffoldState extends State<DefaultScaffold> {
           "Zoe",
           style: TextStyle(
             color: Style.titleColor,
+            fontFamily: "Nunito",
+            fontSize: 36,
+            fontWeight: FontWeight.w700,
           ),
         ),
         backgroundColor: Style.mainColor,

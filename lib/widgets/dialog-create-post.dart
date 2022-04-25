@@ -22,11 +22,7 @@ class DialogCreatePost extends StatelessWidget {
           children: [
             Text(
               "Share what you think",
-              style: TextStyle(
-                fontSize: 36,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+              style: Style.title,
             ),
             _loading
                 ? SizedBox(
@@ -56,7 +52,7 @@ class DialogCreatePost extends StatelessWidget {
                   height: 16,
                 ),
                 AppTextFormField(
-                  controller: _title,
+                  controller: _content,
                   validator: (v) =>
                       v!.isEmpty ? "Please compile this form" : null,
                   hintText: "Content...",
@@ -74,11 +70,7 @@ class DialogCreatePost extends StatelessWidget {
               child: Text(
                 "Cancel",
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
+                style: Style.buttonText,
               ),
             ),
             style: ButtonStyle(
@@ -104,11 +96,7 @@ class DialogCreatePost extends StatelessWidget {
               child: Text(
                 "Post",
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
+                style: Style.buttonText,
               ),
             ),
             style: ButtonStyle(

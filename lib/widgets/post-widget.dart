@@ -55,7 +55,7 @@ class _PostWidgetState extends State<PostWidget> {
             ),
           ),
           child: Container(
-            height: 500,
+            height: 550,
             padding: const EdgeInsets.symmetric(vertical: 16),
             child: Column(
               children: [
@@ -81,18 +81,11 @@ class _PostWidgetState extends State<PostWidget> {
                       ),
                       Text(
                         user.username,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
+                        style: Style.username,
                       ),
                       Text(
                         " / ${user.name}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                          color: Colors.black26,
-                        ),
+                        style: Style.name,
                       ),
                     ],
                   ),

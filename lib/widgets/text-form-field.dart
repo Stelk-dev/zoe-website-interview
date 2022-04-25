@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zoe/style.dart';
 
 class AppTextFormField extends StatelessWidget {
   final TextEditingController controller;
@@ -17,7 +18,7 @@ class AppTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+      style: Style.textFormFieldContent,
       validator: validator,
       maxLines: maxLines,
       decoration: InputDecoration(

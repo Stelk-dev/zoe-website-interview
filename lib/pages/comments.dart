@@ -93,18 +93,11 @@ class _CommentsSectionState extends State<CommentsSection> {
                                     ),
                                     Text(
                                       _user.username,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
+                                      style: Style.username,
                                     ),
                                     Text(
                                       " / ${_user.name}",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14,
-                                        color: Colors.black26,
-                                      ),
+                                      style: Style.name,
                                     ),
                                   ],
                                 ),
@@ -137,10 +130,7 @@ class _CommentsSectionState extends State<CommentsSection> {
                               children: [
                                 Text(
                                   _comments[i].name,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
-                                  ),
+                                  style: Style.nameComment,
                                   textAlign: TextAlign.start,
                                 ),
                                 SizedBox(
@@ -148,9 +138,7 @@ class _CommentsSectionState extends State<CommentsSection> {
                                 ),
                                 Text(
                                   _comments[i].body,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                  ),
+                                  style: Style.contentComment,
                                   textAlign: TextAlign.start,
                                 ),
                               ],

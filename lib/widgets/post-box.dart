@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zoe/models/post-model.dart';
+import 'package:zoe/style.dart';
 
 class PostBox extends StatelessWidget {
   final Post post;
@@ -7,34 +8,25 @@ class PostBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        width: 600,
-        height: 230,
-        padding: EdgeInsets.symmetric(horizontal: 50),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              post.title,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 34,
-            ),
-            Text(
-              post.body,
-              style: TextStyle(
-                fontSize: 18,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 70),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            post.title,
+            style: Style.titlePost,
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(
+            height: 34,
+          ),
+          Text(
+            post.body,
+            style: Style.contentPost,
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }
