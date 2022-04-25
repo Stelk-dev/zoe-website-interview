@@ -1,16 +1,7 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:zoe/pages/home.dart';
-
-class NoThumbScrollBehavior extends ScrollBehavior {
-  @override
-  Set<PointerDeviceKind> get dragDevices => {
-        PointerDeviceKind.touch,
-        PointerDeviceKind.mouse,
-        PointerDeviceKind.stylus,
-      };
-}
+import 'package:zoe/service/scroll-behavior.dart';
+import 'package:zoe/widgets/default-scaffold.dart';
 
 void main() {
   runApp(
@@ -18,7 +9,9 @@ void main() {
       debugShowCheckedModeBanner: false,
       debugShowMaterialGrid: false,
       scrollBehavior: NoThumbScrollBehavior().copyWith(scrollbars: false),
-      home: Home(),
+      home: DefaultScaffold(
+        body: Home(),
+      ),
     ),
   );
 }

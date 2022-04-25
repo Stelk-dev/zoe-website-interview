@@ -76,9 +76,9 @@ class Api {
 
     try {
       final response = await _dio.get("/posts/$postId/comments");
-      final data = response.data as List<Map<String, dynamic>>;
+      final data = response.data as List<dynamic>;
 
-      comments = List<Comments>.from(data);
+      comments = data.map((e) => Comments.fromJson(e)).toList();
       print("🟢 [http.dart] Getting comments");
     } catch (e) {
       print("🔴 [http.dart] Getting comments:\n $e");
