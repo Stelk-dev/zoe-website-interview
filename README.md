@@ -4,7 +4,26 @@ Zoe is a clean social website wich use data from this site: https://jsonplacehol
 
 # Screenshots
 
-<img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/1.png" > <img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/2.png" > <img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/3.png" > <img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/4.png" > <img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/5.png" > <img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/6.png" > <img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/7.png" > 
-# Video
+## Home
+<img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/1.png" />
 
+## Scrolling & Carousel
+<img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/2.png" />
+
+## Comments section
+<img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/3.png" />
+
+## Posting dialog
+<img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/4.png" />
+
+## Posting content
+<img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/5.png" />
+
+## Post of the user
+<img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/6.png" />
+
+## Responsive on mobile
+<img src="https://github.com/Stelk-dev/zoe-website-interview/blob/main/readme-files/7.png" /> 
+
+# Video
 <!-- <video src="https://github.com/Stelk-dev/readme-files/blob/1.png" > -->
