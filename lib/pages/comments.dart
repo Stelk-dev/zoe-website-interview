@@ -24,7 +24,7 @@ class _CommentsSectionState extends State<CommentsSection> {
 
   late Post _post;
   late User _user;
-  List<Comments> _comments = [];
+  List<Comments>? _comments;
 
   Future<void> _getComments() async {
     _comments = await _api.getCommentsFromPost(_post.id);
@@ -43,7 +43,7 @@ class _CommentsSectionState extends State<CommentsSection> {
   @override
   Widget build(BuildContext context) {
     return DefaultScaffold(
-      body: _comments.isEmpty
+      body: _comments == null
           ? Center(
               child: CircularProgressIndicator(
                 color: Style.mainColor,
@@ -57,9 +57,11 @@ class _CommentsSectionState extends State<CommentsSection> {
                     width: 800,
                     decoration: BoxDecoration(
                       border: Border(
-                        left: BorderSide(color: Style.mainColor, width: 1),
-                        right: BorderSide(color: Style.mainColor, width: 1),
-                      ),
+                          left: BorderSide(color: Style.mainColor, width: 1),
+                          right: BorderSide(color: Style.mainColor, width: 1),
+                          bottom: _comments!.isEmpty
+                              ? BorderSide(color: Style.mainColor, width: 0)
+                              : BorderSide(color: Style.mainColor, width: 1)),
                     ),
                     child: Column(
                       children: [
@@ -113,15 +115,17 @@ class _CommentsSectionState extends State<CommentsSection> {
                           ),
                         ),
 
-                        Divider(
-                          color: Style.mainColor,
-                        ),
+                        _comments!.isEmpty
+                            ? Container()
+                            : Divider(
+                                color: Style.mainColor,
+                              ),
 
                         // Comments
                         ListView.separated(
                           shrinkWrap: true,
                           separatorBuilder: (_, __) => Divider(),
-                          itemCount: _comments.length,
+                          itemCount: _comments!.length,
                           itemBuilder: (_, i) => Padding(
                             padding: const EdgeInsets.all(16),
                             child: Column(
@@ -129,7 +133,7 @@ class _CommentsSectionState extends State<CommentsSection> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
-                                  _comments[i].name,
+                                  _comments![i].name,
                                   style: Style.nameComment,
                                   textAlign: TextAlign.start,
                                 ),
@@ -137,7 +141,7 @@ class _CommentsSectionState extends State<CommentsSection> {
                                   height: 16,
                                 ),
                                 Text(
-                                  _comments[i].body,
+                                  _comments![i].body,
                                   style: Style.contentComment,
                                   textAlign: TextAlign.start,
                                 ),

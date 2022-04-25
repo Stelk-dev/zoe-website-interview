@@ -114,24 +114,10 @@ class Api {
       );
 
       // SAVING POSTS BY USERS LOCALLY
-      final PostByUsers _data = Get.put(PostByUsers());
-      _data.postsByUser.add(
-        Post.fromJson(
-          response.data,
-        ),
+      final DataController _data = Get.put(DataController());
+      await _data.addingPostsByUser(
+        Post.fromJson(response.data),
       );
-
-      await LocalStore.writeValueString(
-        key: "PostsByUser",
-        value: json.encode(
-          _data.postsByUser
-              .map(
-                (e) => e.toJson(),
-              )
-              .toList(),
-        ),
-      );
-      _data.update();
 
       showFlash(
         context: context,

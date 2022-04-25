@@ -17,20 +17,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final Api _api = Api();
-  List<User> _users = [];
-  final PostByUsers _postByUsers = Get.put(PostByUsers());
+  final DataController _dataController = Get.put(DataController());
 
   Future<void> _getUsers() async {
-    await _getPostByUsers();
-    if (_postByUsers.postsByUser.isNotEmpty) _users.add(User.anonymous());
-
-    _users = await _api.getUsers();
+    await _dataController.getUsers();
     setState(() {});
-  }
-
-  Future<void> _getPostByUsers() async {
-    await _postByUsers.updatingPostsByUser();
   }
 
   @override
@@ -42,8 +33,8 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetBuilder<PostByUsers>(
-        builder: (_) => _users.isEmpty
+      body: GetBuilder<DataController>(
+        builder: (_) => _dataController.users.isEmpty
             ? Center(
                 child: CircularProgressIndicator(
                   color: Style.mainColor,
@@ -62,13 +53,22 @@ class _HomeState extends State<Home> {
                           right: BorderSide(color: Style.mainColor, width: 1),
                         ),
                       ),
-                      child: ListView.separated(
-                        shrinkWrap: true,
-                        separatorBuilder: (context, index) => Divider(),
-                        itemCount: _users.length,
-                        itemBuilder: (_, i) => PostWidget(
-                          user: _users[i],
-                        ),
+                      child: Column(
+                        children: [
+                          _dataController.users[0].id == 0
+                              ? PostWidget(
+                                  user: _dataController.users[0],
+                                )
+                              : Container(),
+                          ListView.separated(
+                            shrinkWrap: true,
+                            separatorBuilder: (context, index) => Divider(),
+                            itemCount: _dataController.users.length,
+                            itemBuilder: (_, i) => PostWidget(
+                              user: _dataController.users[i],
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
