@@ -68,7 +68,7 @@ class _PostWidgetState extends State<PostWidget> {
                       Container(
                         padding: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
-                          color: Colors.grey,
+                          color: Style.greyColor,
                           shape: BoxShape.circle,
                         ),
                         child: Icon(
@@ -83,14 +83,14 @@ class _PostWidgetState extends State<PostWidget> {
                         user.username,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 16,
+                          fontSize: 18,
                         ),
                       ),
                       Text(
                         " / ${user.name}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 12,
+                          fontSize: 14,
                           color: Colors.black26,
                         ),
                       ),
@@ -135,7 +135,7 @@ class _PostWidgetState extends State<PostWidget> {
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: index == i
-                                            ? Colors.black
+                                            ? Style.secondaryColor
                                             : Colors.black12,
                                       ),
                                     ),

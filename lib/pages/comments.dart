@@ -80,7 +80,7 @@ class _CommentsSectionState extends State<CommentsSection> {
                                     Container(
                                       padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(
-                                        color: Colors.grey,
+                                        color: Style.greyColor,
                                         shape: BoxShape.circle,
                                       ),
                                       child: Icon(
@@ -95,20 +95,21 @@ class _CommentsSectionState extends State<CommentsSection> {
                                       _user.username,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 16,
+                                        fontSize: 18,
                                       ),
                                     ),
                                     Text(
                                       " / ${_user.name}",
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 12,
+                                        fontSize: 14,
                                         color: Colors.black26,
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
+
                               // Post box
                               Expanded(
                                 child: PostBox(

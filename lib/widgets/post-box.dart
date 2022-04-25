@@ -8,9 +8,10 @@ class PostBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SizedBox(
+      child: Container(
         width: 600,
         height: 200,
+        padding: EdgeInsets.symmetric(horizontal: 12),
         child: Column(
           children: [
             Text(

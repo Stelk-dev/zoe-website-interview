@@ -1,6 +1,6 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:zoe/service/scroll-behavior.dart';
+import 'package:zoe/widgets/dialog-create-post.dart';
 import '../models/user-model.dart';
 import '../service/http.dart';
 import '../style.dart';
@@ -63,12 +63,17 @@ class _HomeState extends State<Home> {
               ),
             ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (_) => DialogCreatePost(),
+          );
+        },
         child: Icon(
           Icons.add,
           color: Colors.white,
         ),
-        backgroundColor: Style.mainColor,
+        backgroundColor: Style.secondaryColor,
       ),
     );
   }
