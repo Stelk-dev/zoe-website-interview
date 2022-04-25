@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
 import 'package:zoe/models/comments-model.dart';
 import 'package:zoe/models/post-model.dart';
 import 'package:zoe/models/user-model.dart';
+import 'package:zoe/service/posts-by-user.dart';
+import 'package:zoe/service/store.dart';
 
 class Api {
   final _dio = Dio(
@@ -107,6 +112,26 @@ class Api {
           },
         ),
       );
+
+      // SAVING POSTS BY USERS LOCALLY
+      final PostByUsers _data = Get.put(PostByUsers());
+      _data.postsByUser.add(
+        Post.fromJson(
+          response.data,
+        ),
+      );
+
+      await LocalStore.writeValueString(
+        key: "PostsByUser",
+        value: json.encode(
+          _data.postsByUser
+              .map(
+                (e) => e.toJson(),
+              )
+              .toList(),
+        ),
+      );
+      _data.update();
 
       showFlash(
         context: context,

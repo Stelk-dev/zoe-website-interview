@@ -40,9 +40,16 @@ class Style {
     fontSize: 18,
   );
 
+  static const TextStyle textFormFieldTitle = TextStyle(
+    fontFamily: "Nunito",
+    fontWeight: FontWeight.bold,
+    fontSize: 24,
+  );
+
   static const TextStyle textFormFieldContent = TextStyle(
     fontFamily: "Nunito",
-    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    fontSize: 20,
   );
 
   static const TextStyle buttonText = TextStyle(

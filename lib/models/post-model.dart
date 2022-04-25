@@ -19,4 +19,13 @@ class Post {
       body: map["body"],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "userId": userId,
+      "id": id,
+      "title": title,
+      "body": body,
+    };
+  }
 }

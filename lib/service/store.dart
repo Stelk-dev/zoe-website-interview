@@ -10,30 +10,14 @@ class LocalStore {
     await prefs.setString(key, value);
   }
 
-  static Future<void> writeValueBool(
-      {required String key, required bool value}) async {
-    final prefs = await SharedPreferences.getInstance();
-
-    await prefs.setBool(key, value);
-  }
-
-  // Used for the Posts List<Map>
-  static Future<String> getStringValue({required String key}) async {
+  // Used for the Posts by the user
+  static Future<List<dynamic>?> getStringValue({required String key}) async {
     final prefs = await SharedPreferences.getInstance();
 
     final String? response = prefs.getString(key);
 
-    if (response == null) return "";
+    if (response == null) return null;
 
-    return jsonDecode(response);
-  }
-
-  // Used for the Dark Mode value
-  static Future<bool?> getBoolValue({required String key}) async {
-    final prefs = await SharedPreferences.getInstance();
-
-    final bool? response = prefs.getBool(key);
-
-    return response;
+    return json.decode(response);
   }
 }

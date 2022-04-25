@@ -6,26 +6,28 @@ class AppTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final String hintText;
   int maxLines = 1;
+  TextStyle style;
 
   AppTextFormField({
     required this.controller,
     required this.validator,
     required this.hintText,
     this.maxLines = 1,
+    this.style = Style.textFormFieldContent,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
-      style: Style.textFormFieldContent,
+      style: style,
       validator: validator,
       maxLines: maxLines,
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
         hintText: hintText,
-        hintStyle: TextStyle(fontWeight: FontWeight.normal, fontSize: 18),
+        hintStyle: TextStyle(fontWeight: FontWeight.normal, fontSize: 24),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide(width: 2, color: Colors.grey),

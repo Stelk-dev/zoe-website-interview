@@ -47,6 +47,7 @@ class DialogCreatePost extends StatelessWidget {
                   validator: (v) =>
                       v!.isEmpty ? "Please compile this form" : null,
                   hintText: "Untitled",
+                  style: Style.textFormFieldTitle,
                 ),
                 SizedBox(
                   height: 16,

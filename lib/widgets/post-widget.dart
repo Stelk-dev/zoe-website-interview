@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
 import 'package:zoe/models/post-model.dart';
 import 'package:zoe/models/user-model.dart';
 import 'package:zoe/pages/comments.dart';
+import 'package:zoe/service/posts-by-user.dart';
 import 'package:zoe/style.dart';
 import 'package:zoe/widgets/post-box.dart';
 
@@ -24,7 +26,10 @@ class _PostWidgetState extends State<PostWidget> {
   final PageController _controller = PageController();
 
   Future<void> _getPosts() async {
-    _posts = await _api.getPostsByUserId(user.id);
+    if (user.id == 0)
+      _posts = Get.put(PostByUsers()).postsByUser;
+    else
+      _posts = await _api.getPostsByUserId(user.id);
     setState(() {});
   }
 
@@ -34,10 +39,6 @@ class _PostWidgetState extends State<PostWidget> {
     user = widget.user;
 
     _getPosts();
-
-    _controller.addListener(() {
-      print("Listener");
-    });
   }
 
   @override
