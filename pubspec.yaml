@@ -35,6 +35,9 @@ dependencies:
   # HTTP
   dio: ^4.0.6
 
+  # SAVING LOCAL
+  shared_preferences: ^2.0.13
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
