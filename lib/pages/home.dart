@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
-import 'package:zoe/models/user-model.dart';
 import 'package:zoe/service/posts-by-user.dart';
-import 'package:zoe/service/http.dart';
 import 'package:zoe/service/scroll-behavior.dart';
 import 'package:zoe/widgets/dialog-create-post.dart';
 import '../style.dart';
@@ -21,7 +19,6 @@ class _HomeState extends State<Home> {
 
   Future<void> _getUsers() async {
     await _dataController.getUsers();
-    setState(() {});
   }
 
   @override

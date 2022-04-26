@@ -35,6 +35,7 @@ class User {
     );
   }
 
+  // Used when user add a post
   static User anonymous() {
     return User(
       id: 0,

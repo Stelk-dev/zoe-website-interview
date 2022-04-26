@@ -44,166 +44,160 @@ class _PostWidgetState extends State<PostWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<DataController>(
-      builder: (d) => SizedBox(
-        child: MouseRegion(
-          cursor: SystemMouseCursors.click,
-          child: GestureDetector(
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) => CommentsSection(
-                  user: user,
-                  post: _posts[index],
-                ),
+    return SizedBox(
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        child: GestureDetector(
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => CommentsSection(
+                user: user,
+                post: _posts[index],
               ),
             ),
-            child: Container(
-              height: 550,
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              child: Column(
-                children: [
-                  // User nickname row
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(4),
-                          decoration: BoxDecoration(
-                            color: Style.greyColor,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Icon(
-                            Icons.person,
-                            size: 30,
-                          ),
+          ),
+          child: Container(
+            height: 550,
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: Column(
+              children: [
+                // User nickname row
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: Style.greyColor,
+                          shape: BoxShape.circle,
                         ),
-                        SizedBox(
-                          width: 8,
+                        child: Icon(
+                          Icons.person,
+                          size: 30,
                         ),
-                        Text(
-                          user.username,
-                          style: Style.username,
-                        ),
-                        Text(
-                          " / ${user.name}",
-                          style: Style.name,
-                        ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      Text(
+                        user.username,
+                        style: Style.username,
+                      ),
+                      Text(
+                        " / ${user.name}",
+                        style: Style.name,
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                    height: 14,
-                  ),
-                  // Posts carousel list view
-                  _posts.isEmpty
-                      ? CircularProgressIndicator(
-                          color: Style.mainColor,
-                        )
-                      : Expanded(
-                          child: Stack(
-                            children: [
-                              // Posts
-                              Align(
-                                alignment: Alignment.center,
-                                child: PageView.builder(
-                                  controller: _controller,
-                                  itemCount: _posts.length,
-                                  itemBuilder: (_, index) => PostBox(
-                                    post: _posts[index],
-                                  ),
+                ),
+                SizedBox(
+                  height: 14,
+                ),
+                // Posts carousel list view
+                _posts.isEmpty
+                    ? CircularProgressIndicator(
+                        color: Style.mainColor,
+                      )
+                    : Expanded(
+                        child: Stack(
+                          children: [
+                            // Posts
+                            Align(
+                              alignment: Alignment.center,
+                              child: PageView.builder(
+                                controller: _controller,
+                                itemCount: _posts.length,
+                                itemBuilder: (_, index) => PostBox(
+                                  post: _posts[index],
                                 ),
                               ),
+                            ),
 
-                              // Dots index list
-                              Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    for (int i = 0; i < _posts.length; i++)
-                                      Container(
-                                        height: 8,
-                                        width: 8,
-                                        margin:
-                                            EdgeInsets.symmetric(horizontal: 4),
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: index == i
-                                              ? Style.secondaryColor
-                                              : Colors.black12,
-                                        ),
+                            // Dots index list
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  for (int i = 0; i < _posts.length; i++)
+                                    Container(
+                                      height: 8,
+                                      width: 8,
+                                      margin:
+                                          EdgeInsets.symmetric(horizontal: 4),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: index == i
+                                            ? Style.secondaryColor
+                                            : Colors.black12,
                                       ),
+                                    ),
+                                ],
+                              ),
+                            ),
+
+                            // Go back | Go forward icon buttons
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    IconButton(
+                                      onPressed: () {
+                                        if (index == 0) return;
+
+                                        _controller.previousPage(
+                                          duration: Duration(milliseconds: 500),
+                                          curve: Curves.easeInOut,
+                                        );
+
+                                        setState(() => index -= 1);
+                                      },
+                                      icon: Icon(
+                                        Icons.arrow_back_ios,
+                                        color: index == 0
+                                            ? Colors.black26
+                                            : Colors.black,
+                                      ),
+                                      iconSize: 30,
+                                      splashRadius: index == 0 ? 1 : 30,
+                                    ),
+                                    IconButton(
+                                      onPressed: () {
+                                        if (index == (_posts.length - 1))
+                                          return;
+
+                                        _controller.nextPage(
+                                          duration: Duration(milliseconds: 500),
+                                          curve: Curves.easeInOut,
+                                        );
+
+                                        setState(() => index += 1);
+                                      },
+                                      icon: Icon(
+                                        Icons.arrow_forward_ios,
+                                        color: index == (_posts.length - 1)
+                                            ? Colors.black26
+                                            : Colors.black,
+                                      ),
+                                      iconSize: 30,
+                                      splashRadius:
+                                          index == (_posts.length - 1) ? 1 : 30,
+                                    ),
                                   ],
                                 ),
                               ),
-
-                              // Go back | Go forward icon buttons
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 16),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      IconButton(
-                                        onPressed: () {
-                                          if (index == 0) return;
-
-                                          _controller.previousPage(
-                                            duration:
-                                                Duration(milliseconds: 500),
-                                            curve: Curves.easeInOut,
-                                          );
-
-                                          setState(() => index -= 1);
-                                        },
-                                        icon: Icon(
-                                          Icons.arrow_back_ios,
-                                          color: index == 0
-                                              ? Colors.black26
-                                              : Colors.black,
-                                        ),
-                                        iconSize: 30,
-                                        splashRadius: index == 0 ? 1 : 30,
-                                      ),
-                                      IconButton(
-                                        onPressed: () {
-                                          if (index == (_posts.length - 1))
-                                            return;
-
-                                          _controller.nextPage(
-                                            duration:
-                                                Duration(milliseconds: 500),
-                                            curve: Curves.easeInOut,
-                                          );
-
-                                          setState(() => index += 1);
-                                        },
-                                        icon: Icon(
-                                          Icons.arrow_forward_ios,
-                                          color: index == (_posts.length - 1)
-                                              ? Colors.black26
-                                              : Colors.black,
-                                        ),
-                                        iconSize: 30,
-                                        splashRadius:
-                                            index == (_posts.length - 1)
-                                                ? 1
-                                                : 30,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                ],
-              ),
+                      ),
+              ],
             ),
           ),
         ),

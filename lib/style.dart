@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// MAIN APP STYLE
 class Style {
   // COLORS
   static const titleColor = Colors.white;
@@ -7,7 +8,7 @@ class Style {
   static const secondaryColor = Color.fromRGBO(57, 57, 82, 1);
   static const greyColor = Color.fromRGBO(164, 197, 205, 1);
 
-  // STYLES
+  // TEXT STYLES
   static const TextStyle username = TextStyle(
     fontFamily: "Nunito",
     fontWeight: FontWeight.w800,

@@ -6,9 +6,9 @@ import 'package:zoe/models/user-model.dart';
 import 'package:zoe/service/http.dart';
 import 'package:zoe/service/store.dart';
 
+// DATA TO DISPLAY IN THE HOME
 class DataController extends GetxController {
   final Api _api = Api();
-  // DATA TO DISPLAY IN THE HOME
   List<User> users = [];
   List<Post> postsByUser = [];
 

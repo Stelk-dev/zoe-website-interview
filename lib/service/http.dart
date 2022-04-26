@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +6,7 @@ import 'package:zoe/models/comments-model.dart';
 import 'package:zoe/models/post-model.dart';
 import 'package:zoe/models/user-model.dart';
 import 'package:zoe/service/posts-by-user.dart';
-import 'package:zoe/service/store.dart';
+import 'package:zoe/widgets/pop-up-response.dart';
 
 class Api {
   final _dio = Dio(
@@ -36,7 +34,7 @@ class Api {
     return users;
   }
 
-  // Get Posts
+  // Get Posts by user Id
   Future<List<Post>> getPostsByUserId(int userId) async {
     print("🛠 [http.dart] Getting posts...");
     // Group of posts added with the same user
@@ -56,26 +54,6 @@ class Api {
     return posts;
   }
 
-  // Get user
-  // Future<User?> getUserInformation(int userId) async {
-  //   print("🛠 [http.dart] Getting user information: $userId...");
-  //   User? user;
-
-  //   try {
-  //     final response = await _dio.get("/users/$userId");
-  //     final data = response.data as Map<String, dynamic>;
-
-  //     if (data.isEmpty) return User.anonymous();
-
-  //     user = User.fromJson(data);
-  //     print("🟢 [http.dart] Getting user");
-  //   } catch (e) {
-  //     print("🔴 [http.dart] Getting user:\n $e");
-  //   }
-
-  //   return user;
-  // }
-
   // Get comments
   Future<List<Comments>> getCommentsFromPost(int postId) async {
     print("🛠 [http.dart] Getting comments from post: $postId...");
@@ -94,7 +72,7 @@ class Api {
     return comments;
   }
 
-  // Get comments
+  // Add a post
   Future<void> addPost(String title, String body, BuildContext context) async {
     print("🛠 [http.dart] Adding...");
 
@@ -119,57 +97,22 @@ class Api {
         Post.fromJson(response.data),
       );
 
-      showFlash(
+      PopUpResponse.showPopUp(
+        title: "Your post was successfully added!",
+        color: Colors.green,
         context: context,
-        duration: Duration(milliseconds: 3500),
-        builder: (_, controller) => Flash(
-          controller: controller,
-          behavior: FlashBehavior.floating,
-          position: FlashPosition.bottom,
-          backgroundColor: Colors.green,
-          boxShadows: kElevationToShadow[4],
-          horizontalDismissDirection: HorizontalDismissDirection.horizontal,
-          child: FlashBar(
-            content: Text(
-              'Your post was successfully added!',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
-          ),
-        ),
       );
+
       Navigator.of(context).pop();
 
       print("🟢 [http.dart] Post added");
     } catch (e) {
       print("🔴 [http.dart] Post added:\n $e");
 
-      showFlash(
+      PopUpResponse.showPopUp(
+        title: "Something went wrong... try again",
+        color: Colors.red,
         context: context,
-        duration: Duration(milliseconds: 3500),
-        builder: (_, controller) => Flash(
-          controller: controller,
-          behavior: FlashBehavior.floating,
-          position: FlashPosition.bottom,
-          backgroundColor: Colors.red,
-          boxShadows: kElevationToShadow[4],
-          horizontalDismissDirection: HorizontalDismissDirection.horizontal,
-          child: FlashBar(
-            content: Text(
-              'Something went wrong... try again',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
-            ),
-          ),
-        ),
       );
     }
   }
